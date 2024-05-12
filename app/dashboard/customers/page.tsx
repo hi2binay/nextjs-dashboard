@@ -1,10 +1,9 @@
 import Pagination from '@/app/ui/invoices/pagination';
 import Search from '@/app/ui/search';
 import Table from '@/app/ui/customers/table';
-import { lusitana } from '@/app/ui/fonts';
 import { Suspense } from 'react';
 import { CustomersTableSkeleton } from '@/app/ui/skeletons';
-import { fetchInvoicesPages } from '@/app/lib/data';
+import { fetchCustomersPages } from '@/app/lib/data';
 
 export default async function Page({
   searchParams,
@@ -16,8 +15,8 @@ export default async function Page({
 }) {
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
-  const totalPages = await fetchInvoicesPages(query);
-
+  const totalPages = await fetchCustomersPages(query);
+  
   return (
     <div className="w-full">
       <Suspense key={query + currentPage} fallback={<CustomersTableSkeleton />}>
